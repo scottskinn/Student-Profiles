@@ -15,19 +15,14 @@ class App extends Component {
       .then((response) => response.json())
       .then((user) => this.setState(() => {
         return { students: user}
-      }, () => {console.log(this.state)}
+      }, 
+      // () => {console.log(this.state)}
     ));
   };
-
-  // average = student.grades.map((student) => {
-  //   return student.grade;
-  // )};
-  
 
   render() {
     return (
       <div className="App">
-        <h1>Student Profiles</h1>
         <div>
           {this.state.students.students?.map((student) => {
             const avg =
@@ -36,13 +31,18 @@ class App extends Component {
 
 
             return (
-              <div key={student.id}>
-                <img src={student.pic}/>
-                <h2>{student.firstName} {student.lastName}</h2>
-                <p>{student.email}</p>
-                <p>{student.company}</p>
-                <p>{student.skill}</p>
-                <p>{avg}</p>
+              <div key={student.id} className='container'>
+                <img src={student.pic} className='student-pic'/>
+
+                <div className='student-info'>
+                  <h1 className='student-name'>
+                    {student.firstName} {student.lastName}
+                  </h1>
+                  <p>Email: {student.email}</p>
+                  <p>Company: {student.company}</p>
+                  <p>Skill: {student.skill}</p>
+                  <p>Average: {avg}</p>
+                </div>
               </div>
             )
           })}

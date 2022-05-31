@@ -5,7 +5,8 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      students: []
+      students: [],
+      searchField: ''
     };
     // console.log('App constructor');
   };
@@ -20,16 +21,34 @@ class App extends Component {
     ));
   };
 
+  onSearchChange = (event) => {
+    console.log(event.target.value)
+    const searchField = event.target.value.toLocaleLowerCase();
+    this.setState(() => {
+      return { searchField };
+    });
+  }
+
   render() {
+    const { students, searchField } = this.state;
+    const { onSearchChange } = this;
+    const filteredStudents = students.students?.filter((student) => {
+      return student.firstName.toLocaleLowerCase().includes(searchField) ||
+        student.lastName.toLocaleLowerCase().includes(searchField);
+    });
     return (
       <div className="App">
+        <input
+          className='search-box'
+          type='search'
+          placeholder='Search by name'
+          onChange={onSearchChange}  
+        />
         <div>
-          {this.state.students.students?.map((student) => {
+          {filteredStudents?.map((student) => {
             const avg =
             student.grades.reduce((sum, curr) => sum + Number(curr), 0) /
             student.grades.length;
-
-
             return (
               <div key={student.id} className='container'>
                 <img src={student.pic} className='student-pic'/>
@@ -44,7 +63,7 @@ class App extends Component {
                   <p>Average: {avg}</p>
                 </div>
               </div>
-            )
+            );
           })}
         </div>
       </div>

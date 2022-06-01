@@ -36,16 +36,17 @@ class App extends Component {
     const { students, searchField } = this.state;
     const { onSearchChange } = this;
 
-    // filter students by searchField in input field
+    // // filter students by searchField in input field
     const filteredStudents = students.students?.filter((student) => {
       return student.firstName.toLocaleLowerCase().includes(searchField) ||
         student.lastName.toLocaleLowerCase().includes(searchField);
     });
 
+
     return (
       <div className="App">
         <SearchBox onChangeHandler={onSearchChange} placeholder='Search by name' className='search-box'/>
-        <Card students={ filteredStudents } />
+        <Card students={ filteredStudents } />      
       </div>
     );
   }

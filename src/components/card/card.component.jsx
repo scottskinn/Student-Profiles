@@ -1,4 +1,6 @@
 import { Component } from "react";
+import Tags from "../tags/tags.component";
+import ExpandList from "../expandable-list/expand-list.component";
 
 
 class Card extends Component {
@@ -23,7 +25,15 @@ class Card extends Component {
                   <p>Company: {student.company}</p>
                   <p>Skill: {student.skill}</p>
                   <p>Average: {avg}</p>
-                </div>
+                  {/* <div className="grades">
+                    {student.grades.map((grade, index) => 
+                    <ul key={index}>Test {index + 1}: {grade}</ul>)}
+                  </div> */}
+                  <ExpandList students={student}/>
+
+                  {/* Add Tags */}
+                  <Tags />
+                </div>                
               </div>
             );
           })}

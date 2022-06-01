@@ -15,7 +15,7 @@ This application use created by Scott Skinn
 
 ## Project Status
 
-    In Progress - Part 5 tag search bard is still being built
+    In Progress - Part 5 tag search bar is still being built
 
 ## License
 
